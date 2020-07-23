@@ -228,8 +228,7 @@ fnn.predict = function(model,
                        num_basis = c(7),
                        domain_range = list(c(0, 1)),
                        covariate_scaling = TRUE,
-                       raw_data = FALSE,
-                       print_info = TRUE){
+                       raw_data = FALSE){
 
   ##### Helper Functions #####
 
@@ -462,6 +461,7 @@ fnn.predict = function(model,
   # passed onto the network. This means normalizing things and rewriting some other things
 
   # Looping to get approximations
+  print_info = FALSE
   if(print_info == TRUE){
     print(paste0("Evaluating Integrals:"))
   }
