@@ -627,15 +627,15 @@ fnn.predict = function(model,
     }
 
     if(cur_basis == "fourier"){
-      for (j in 1:ncol(df)) {
-        converted_df[j, left_end:right_end] <- c(integral_form_fourier(df[,j],
-                                                                       num_beta_basis = cur_basis_num,
-                                                                       range = cur_range))
-      }
+      # for (j in 1:ncol(df)) {
+      #   converted_df[j, left_end:right_end] <- c(integral_form_fourier(df[,j],
+      #                                                                  num_beta_basis = cur_basis_num,
+      #                                                                  range = cur_range))
+      # }
 
-      # converted_df[, left_end:right_end] = pbapply(df, 2, integral_form_fourier,
-      #                                              num_beta_basis = cur_basis_num,
-      #                                              range = cur_range)
+      converted_df[, left_end:right_end] = t(pbapply(df, 2, integral_form_fourier,
+                                                   num_beta_basis = cur_basis_num,
+                                                   range = cur_range))
 
     } else{
 
