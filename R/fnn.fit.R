@@ -556,7 +556,9 @@ fnn.fit <- function(resp,
   # }
 
   # Looping to get approximations
-  print(paste0("Evaluating Integrals:"))
+  if(print_info == TRUE){
+    print(paste0("Evaluating Integrals:"))
+  }
   for (i in 1:dim(func_cov)[3]) {
 
     # Current data set
@@ -587,9 +589,15 @@ fnn.fit <- function(resp,
     }
 
     # Getting evaluations
-    converted_df[, left_end:right_end] = t(pbapply(df, 2, integral_eval, beta_basis = cur_basis,
-                                               num_beta_basis = cur_basis_num,
-                                               range = cur_range))
+    if(print_info == T){
+      converted_df[, left_end:right_end] = t(pbapply(df, 2, integral_eval, beta_basis = cur_basis,
+                                                     num_beta_basis = cur_basis_num,
+                                                     range = cur_range))
+    } else {
+      converted_df[, left_end:right_end] = t(apply(df, 2, integral_eval, beta_basis = cur_basis,
+                                                   num_beta_basis = cur_basis_num,
+                                                   range = cur_range))
+    }
   }
 
   # Now attaching scalar covariates
