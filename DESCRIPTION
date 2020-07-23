@@ -1,16 +1,35 @@
 Package: FuncNN
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+Title: Functional Neural Networks
+Version: 1.0
+Authors@R: c(
+    person("Richard", "Groenewald", role = "ctb"),
+    person("Barinder", "Thind", , "barinder.thi@gmail.com", role = c("aut", "cre", "cph")),
+    person("Jiguo", "Cao", role = "aut"),
+    person("Sidi Wu", role = "ctb")
+    )
+Description: This package fits models of the form y(z, f(x) | theta) = z + f(x) + epsilon. In other words, this package will allow users to build
+             models that have either functional or scalar responses paired with functional and scalar covariates. The main backbone of these models is
+             neural networks. There are also a number of helper functions that make workflow easier for the user.
+Imports: keras,
+         tensorflow,
+         fda.usc,
+         fda,
+         ggplot2,
+         ggpubr,
+         caret,
+         pbapply,
+         reshape2,
+         flux,
+         doParallel,
+         foreach,
+         Matrix
+URL: https://arxiv.org/abs/2006.09590, https://github.com/b-thi/FuncNN
+License: Unlimited
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
