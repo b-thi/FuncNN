@@ -229,7 +229,7 @@ fnn.predict = function(model,
                        domain_range = list(c(0, 1)),
                        covariate_scaling = TRUE,
                        raw_data = FALSE,
-                       print_info = T){
+                       print_info = TRUE){
 
   ##### Helper Functions #####
 
