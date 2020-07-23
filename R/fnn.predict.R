@@ -316,7 +316,7 @@ fnn.predict = function(model,
                                                    nbasis = num_fd_basis)
 
       # evaluating fourier basis for x(s)
-      integ_values_fourier = eval.basis(evalarg = seq(range[1], range[2], length.out = 100),
+      integ_values_fourier = eval.basis(evalarg = seq(range[1], range[2], length.out = 500),
                                         basisobj = fourier_basis_feature)
 
       # functional observation
@@ -327,7 +327,7 @@ fnn.predict = function(model,
                                                 nbasis = num_beta_basis)
 
       # evaluating functions for beta(s)
-      fourier_evals = eval.basis(evalarg = seq(range[1], range[2], length.out = 100),
+      fourier_evals = eval.basis(evalarg = seq(range[1], range[2], length.out = 500),
                                  basisobj = fourier_basis_beta)
 
       # Getting x(s)*beta basis function (integrand)
@@ -335,7 +335,7 @@ fnn.predict = function(model,
 
       # Getting integral
       integral_fourier = apply(eval_func_fourier, 2, function(x){
-        return(auc(x = seq(range[1], range[2], length.out = 100),
+        return(auc(x = seq(range[1], range[2], length.out = 500),
                    y = x))})
 
       # returning
@@ -363,7 +363,7 @@ fnn.predict = function(model,
                                                    norder = order_chosen_fd)
 
       # evaluating b-spline basis for x(s)
-      integ_values_bspline = eval.basis(evalarg = seq(range[1], range[2], length.out = 100),
+      integ_values_bspline = eval.basis(evalarg = seq(range[1], range[2], length.out = 500),
                                         basisobj = bspline_basis_feature)
 
       # functional observation
@@ -375,7 +375,7 @@ fnn.predict = function(model,
                                                 norder = order_chosen_beta)
 
       # evaluating functions for beta(s)
-      bspline_evals = eval.basis(evalarg = seq(range[1], range[2], length.out = 100),
+      bspline_evals = eval.basis(evalarg = seq(range[1], range[2], length.out = 500),
                                  basisobj = bspline_basis_beta)
 
       # Getting x(s)*beta basis function (integrand)
@@ -383,7 +383,7 @@ fnn.predict = function(model,
 
       # Getting integral
       integral_bspline = apply(eval_func_bspline, 2, function(x){
-        return(auc(x = seq(range[1], range[2], length.out = 100),
+        return(auc(x = seq(range[1], range[2], length.out = 500),
                    y = x))})
 
       return(integral_bspline)
