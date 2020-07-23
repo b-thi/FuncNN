@@ -111,14 +111,14 @@ fnn.plot <- function(FNN_Predict_Object,
     colnames(fd_ds) = c("Continuum", "Obs", "Value")
 
     # Plotting functional observations
-    print(ggplot(data = fd_ds, aes(x = fd_ds$Continuum, y = fd_ds$Value, color = as.factor(fd_ds$Obs))) +
+    print(ggplot(data = fd_ds, aes(x = Continuum, y = Value, color = as.factor(Obs))) +
             geom_line(size = 1.25) +
             theme_bw() +
             labs(color='Obs Number') +
             labs(x = "s", y = "x(s)", title = "Functional Curves") +
             theme(plot.title = element_text(hjust = 0.5)))
 
-    final_plot = ggplot(data = fd_ds, aes(x = fd_ds$Continuum, y = fd_ds$Value, color = as.factor(fd_ds$Obs))) +
+    final_plot = ggplot(data = fd_ds, aes(x = Continuum, y = Value, color = as.factor(Obs))) +
       geom_line(size = 1.25) +
       theme_bw() +
       labs(color='Obs Number') +
@@ -156,14 +156,14 @@ fnn.plot <- function(FNN_Predict_Object,
     colnames(fd_ds) = c("Continuum", "Obs", "Value")
 
     # Plotting functional observations
-    print(ggplot(data = fd_ds, aes(x = fd_ds$Continuum, y = fd_ds$Value, color = as.factor(fd_ds$Obs))) +
+    print(ggplot(data = fd_ds, aes(x = Continuum, y = Value, color = as.factor(Obs))) +
             geom_line(size = 1.25) +
             theme_bw() +
             labs(color='Obs Number') +
             labs(x = "s", y = "x(s)", title = "Functional Curves") +
             theme(plot.title = element_text(hjust = 0.5)))
 
-    final_plot = ggplot(data = fd_ds, aes(x = fd_ds$Continuum, y = fd_ds$Value, color = as.factor(fd_ds$Obs))) +
+    final_plot = ggplot(data = fd_ds, aes(x = Continuum, y = Value, color = as.factor(Obs))) +
       geom_line(size = 1.25) +
       theme_bw() +
       labs(color='Obs Number') +
