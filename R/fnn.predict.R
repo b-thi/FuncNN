@@ -44,7 +44,7 @@
 #' # First, we do an example with a scalar response:
 #'
 #' # loading data
-#' tecator = FNN::tecator
+#' tecator = FuncNN::tecator
 #'
 #' # libraries
 #' library(fda)
@@ -169,7 +169,7 @@
 #' # Classification Prediction
 #'
 #' # Loading data
-#' tecator = FNN::tecator
+#' tecator = FuncNN::tecator
 #'
 #' # Making classification bins
 #' tecator_resp = as.factor(ifelse(tecator$y$Fat > 25, 1, 0))

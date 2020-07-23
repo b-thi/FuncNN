@@ -1,7 +1,7 @@
 #' @title Fitting Functional Neural Networks
 #'
 #' @description
-#' This is the main function in the `FNN` package. This function fits models of the form: f(z, b(x)) where
+#' This is the main function in the `FuncNN` package. This function fits models of the form: f(z, b(x)) where
 #' z are the scalar covariates and b(x) are the functional covariates. The form of f() is that of a neural network
 #' with a generalized input space.
 #'
@@ -113,7 +113,7 @@
 #' # Classification Example with raw_data = TRUE
 #'
 #' # Loading data
-#' tecator = FNN::tecator
+#' tecator = FuncNN::tecator
 #'
 #' # Making classification bins
 #' tecator_resp = as.factor(ifelse(tecator$y$Fat > 25, 1, 0))
@@ -157,7 +157,7 @@
 #' # Example with Pre-Processing (raw_data = F)
 #'
 #' # loading data
-#' tecator = FNN::tecator
+#' tecator = FuncNN::tecator
 #'
 #' # libraries
 #' library(fda)
