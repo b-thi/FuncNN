@@ -43,7 +43,7 @@ the number of observations, and k is the number of functional covariates.}
 \item{scalar_cov}{A matrix contained the multivariate information associated with the data set. This is all of your
 non-longitudinal data.}
 
-\item{basis_choice}{A vector of size k (the number of functional covariates) with "fourier" as the inputs -- additional options coming soon.
+\item{basis_choice}{A vector of size k (the number of functional covariates) with either "fourier" or "bspline" as the inputs.
 This is the choice for the basis functions used for the functional weight expansion. If you only specify one, with k > 1,
 then the argument will repeat that choice for all k functional covariates.}
 
@@ -115,7 +115,7 @@ The following are returned:
 This returns those functions.
 }
 \description{
-This is the main function in the \code{FuncNN} package. This function fits models of the form: f(z, b(x)) where
+This is the main function in the \code{FNN} package. This function fits models of the form: f(z, b(x)) where
 z are the scalar covariates and b(x) are the functional covariates. The form of f() is that of a neural network
 with a generalized input space.
 }
@@ -146,7 +146,7 @@ fit1 = fnn.fit(resp = total_prec,
 # Classification Example with raw_data = TRUE
 
 # Loading data
-tecator = FuncNN::tecator
+tecator = FNN::tecator
 
 # Making classification bins
 tecator_resp = as.factor(ifelse(tecator$y$Fat > 25, 1, 0))
@@ -190,7 +190,7 @@ predict_class = fnn.predict(fit_class,
 # Example with Pre-Processing (raw_data = F)
 
 # loading data
-tecator = FuncNN::tecator
+tecator = FNN::tecator
 
 # libraries
 library(fda)
@@ -256,7 +256,7 @@ data("daily")
 # Creating functional data
 temp_data = array(dim = c(65, 35, 1))
 tempbasis65  = create.fourier.basis(c(0,365), 65)
-tempbasis7 = create.fourier.basis(c(0,365), 7)
+tempbasis7 = create.bspline.basis(c(0,365), 7, norder = 4)
 timepts = seq(1, 365, 1)
 temp_fd = Data2fd(timepts, daily$tempav, tempbasis65)
 prec_fd = Data2fd(timepts, daily$precav, tempbasis7)
@@ -281,7 +281,7 @@ resp_train = t(resp_mat)
 weather_func_fnn <- fnn.fit(resp = resp_train,
                             func_cov = weather_data_train,
                             scalar_cov = scalar_train,
-                            basis_choice = c("fourier"),
+                            basis_choice = c("bspline"),
                             num_basis = c(7),
                             hidden_layers = 2,
                             neurons_per_layer = c(1024, 1024),

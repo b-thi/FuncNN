@@ -32,7 +32,7 @@ No additional details for now.
 library(fda)
 
 # loading data
-tecator = FuncNN::tecator
+tecator = FNN::tecator
 
 # define the time points on which the functional predictor is observed.
 timepts = tecator$absorp.fdata$argvals

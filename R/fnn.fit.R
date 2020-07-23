@@ -1,7 +1,7 @@
 #' @title Fitting Functional Neural Networks
 #'
 #' @description
-#' This is the main function in the `FuncNN` package. This function fits models of the form: f(z, b(x)) where
+#' This is the main function in the `FNN` package. This function fits models of the form: f(z, b(x)) where
 #' z are the scalar covariates and b(x) are the functional covariates. The form of f() is that of a neural network
 #' with a generalized input space.
 #'
@@ -36,7 +36,7 @@
 #' @param scalar_cov A matrix contained the multivariate information associated with the data set. This is all of your
 #' non-longitudinal data.
 #'
-#' @param basis_choice A vector of size k (the number of functional covariates) with "fourier" as the inputs -- additional options coming soon.
+#' @param basis_choice A vector of size k (the number of functional covariates) with either "fourier" or "bspline" as the inputs.
 #' This is the choice for the basis functions used for the functional weight expansion. If you only specify one, with k > 1,
 #' then the argument will repeat that choice for all k functional covariates.
 #'
@@ -113,7 +113,7 @@
 #' # Classification Example with raw_data = TRUE
 #'
 #' # Loading data
-#' tecator = FuncNN::tecator
+#' tecator = FNN::tecator
 #'
 #' # Making classification bins
 #' tecator_resp = as.factor(ifelse(tecator$y$Fat > 25, 1, 0))
@@ -157,7 +157,7 @@
 #' # Example with Pre-Processing (raw_data = F)
 #'
 #' # loading data
-#' tecator = FuncNN::tecator
+#' tecator = FNN::tecator
 #'
 #' # libraries
 #' library(fda)
@@ -223,7 +223,7 @@
 #' # Creating functional data
 #' temp_data = array(dim = c(65, 35, 1))
 #' tempbasis65  = create.fourier.basis(c(0,365), 65)
-#' tempbasis7 = create.fourier.basis(c(0,365), 7)
+#' tempbasis7 = create.bspline.basis(c(0,365), 7, norder = 4)
 #' timepts = seq(1, 365, 1)
 #' temp_fd = Data2fd(timepts, daily$tempav, tempbasis65)
 #' prec_fd = Data2fd(timepts, daily$precav, tempbasis7)
@@ -248,7 +248,7 @@
 #' weather_func_fnn <- fnn.fit(resp = resp_train,
 #'                             func_cov = weather_data_train,
 #'                             scalar_cov = scalar_train,
-#'                             basis_choice = c("fourier"),
+#'                             basis_choice = c("bspline"),
 #'                             num_basis = c(7),
 #'                             hidden_layers = 2,
 #'                             neurons_per_layer = c(1024, 1024),
@@ -385,8 +385,10 @@ fnn.fit <- function(resp,
       # Getting current domain
       curr_domain = domain_range[[t]]
 
-      # Creating basis (using fourier)
-      basis_setup = create.fourier.basis(rangeval = c(curr_domain[1], curr_domain[2]), nbasis = 31)
+      # Creating basis (using bspline)
+      basis_setup = create.bspline.basis(rangeval = c(curr_domain[1], curr_domain[2]),
+                                         nbasis = 31,
+                                         norder = 4)
 
       # Time points
       time_points = seq(curr_domain[1], curr_domain[2], length.out = ncol(curr_func))
@@ -407,203 +409,92 @@ fnn.fit <- function(resp,
   ##### Helper Functions #####
 
   # Integration Approximation for fourier and b-spline
-  # integral_eval <- function(functional_data,
-  #                           beta_basis,
-  #                           num_fd_basis = dim(func_cov)[1],
-  #                           num_beta_basis,
-  #                           range){
-  #
-  #   if(beta_basis == "fourier"){
-  #
-  #     # So, first the basis is created for functional, x(s)
-  #     fourier_basis_feature = create.fourier.basis(rangeval = c(range[1], range[2]),
-  #                                                  nbasis = num_fd_basis)
-  #
-  #     # evaluating fourier basis for x(s)
-  #     integ_values_fourier = eval.basis(evalarg = seq(range[1], range[2], length.out = 500),
-  #                                       basisobj = fourier_basis_feature)
-  #
-  #     # functional observation
-  #     x_temp_fourier = functional_data%*%t(integ_values_fourier)
-  #
-  #     # Now making b spline for beta(s)
-  #     fourier_basis_beta = create.fourier.basis(rangeval = c(range[1], range[2]),
-  #                                               nbasis = num_beta_basis)
-  #
-  #     # evaluating functions for beta(s)
-  #     fourier_evals = eval.basis(evalarg = seq(range[1], range[2], length.out = 500),
-  #                                basisobj = fourier_basis_beta)
-  #
-  #     # Getting x(s)*beta basis function (integrand)
-  #     eval_func_fourier = apply(fourier_evals, 2, function(x){return((x*x_temp_fourier))})
-  #
-  #     # Getting integral
-  #     integral_fourier = apply(eval_func_fourier, 2, function(x){
-  #       return(auc(x = seq(range[1], range[2], length.out = 500),
-  #                  y = x))})
-  #
-  #     # returning
-  #     return(integral_fourier)
-  #
-  #   }
-  #
-  #   if(beta_basis == "bspline"){
-  #
-  #     if(num_fd_basis > 3){
-  #       order_chosen_fd = 4
-  #     } else {
-  #       order_chosen_fd = num_fd_basis
-  #     }
-  #
-  #     if(num_beta_basis > 3){
-  #       order_chosen_beta = 4
-  #     } else {
-  #       order_chosen_beta = num_beta_basis
-  #     }
-  #
-  #     # So, first the basis is created for functional, x(s)
-  #     bspline_basis_feature = create.bspline.basis(rangeval = c(range[1], range[2]),
-  #                                                  nbasis = num_fd_basis,
-  #                                                  norder = order_chosen_fd)
-  #
-  #     # evaluating b-spline basis for x(s)
-  #     integ_values_bspline = eval.basis(evalarg = seq(range[1], range[2], length.out = 500),
-  #                                       basisobj = bspline_basis_feature)
-  #
-  #     # functional observation
-  #     x_temp_bspline = functional_data%*%t(integ_values_bspline)
-  #
-  #     # Now making b spline for beta(s)
-  #     bspline_basis_beta = create.bspline.basis(rangeval = c(range[1], range[2]),
-  #                                               nbasis = num_beta_basis,
-  #                                               norder = order_chosen_beta)
-  #
-  #     # evaluating functions for beta(s)
-  #     bspline_evals = eval.basis(evalarg = seq(range[1], range[2], length.out = 500),
-  #                                basisobj = bspline_basis_beta)
-  #
-  #     # Getting x(s)*beta basis function (integrand)
-  #     eval_func_bspline = apply(bspline_evals, 2, function(x){return((x*x_temp_bspline))})
-  #
-  #     # Getting integral
-  #     integral_bspline = apply(eval_func_bspline, 2, function(x){
-  #       return(auc(x = seq(range[1], range[2], length.out = 500),
-  #                  y = x))})
-  #
-  #     return(integral_bspline)
-  #   }
-  #
-  #
-  # }
+  integral_eval <- function(functional_data,
+                            beta_basis,
+                            num_fd_basis = dim(func_cov)[1],
+                            num_beta_basis,
+                            range){
 
-  # Composite approximator
-  composite_approximator <- function(f, a, b, n) {
+    if(beta_basis == "fourier"){
 
-    # This function does the integral approximations and gets called in the
-    # integral approximator function. In the integral approximator function
-    # we pass in a function f into this and that is final output - a collection
-    # of numbers - one for each of the functional observations
+      # So, first the basis is created for functional, x(s)
+      fourier_basis_feature = create.fourier.basis(rangeval = c(range[1], range[2]),
+                                                   nbasis = num_fd_basis)
 
-    # Error checking code
-    if (is.function(f) == FALSE) {
-      stop('The input f(x) must be a function with one parameter (variable)')
+      # evaluating fourier basis for x(s)
+      integ_values_fourier = eval.basis(evalarg = seq(range[1], range[2], length.out = 500),
+                                        basisobj = fourier_basis_feature)
+
+      # functional observation
+      x_temp_fourier = functional_data%*%t(integ_values_fourier)
+
+      # Now making b spline for beta(s)
+      fourier_basis_beta = create.fourier.basis(rangeval = c(range[1], range[2]),
+                                                nbasis = num_beta_basis)
+
+      # evaluating functions for beta(s)
+      fourier_evals = eval.basis(evalarg = seq(range[1], range[2], length.out = 500),
+                                 basisobj = fourier_basis_beta)
+
+      # Getting x(s)*beta basis function (integrand)
+      eval_func_fourier = apply(fourier_evals, 2, function(x){return((x*x_temp_fourier))})
+
+      # Getting integral
+      integral_fourier = apply(eval_func_fourier, 2, function(x){
+        return(auc(x = seq(range[1], range[2], length.out = 500),
+                   y = x))})
+
+      # returning
+      return(integral_fourier)
+
     }
 
-    # General formula
-    h <- (b - a)/n
+    if(beta_basis == "bspline"){
 
-    # Setting parameters
-    xn <- seq.int(a, b, length.out = n + 1)
-    xn <- xn[-1]
-    xn <- xn[-length(xn)]
-
-    # Approximating using the composite rule formula
-    integ_approx <- (h/3)*(f(a) + 2*sum(f(xn[seq.int(2, length(xn), 2)])) +
-                             4*sum(f(xn[seq.int(1, length(xn), 2)])) +
-                             f(b))
-
-    # Returning result
-    return(integ_approx)
-
-  }
-
-  # Integration Approximation for fourier and b-spline
-  integral_form_fourier <- function(functional_data,
-                                    beta_basis = NULL,
-                                    num_fd_basis = dim(func_cov)[1],
-                                    num_beta_basis,
-                                    range){
-
-    ########################################################################
-
-    #### Setting up x_i(s) form ####
-
-    # Initializing
-    func_basis_sin <- c()
-    func_basis_cos <- c()
-
-    # Setting up vectors
-    for (i in 1:((num_fd_basis - 1)/2)) {
-      func_basis_sin[i] <- paste0("sin(2*pi*x*", i, "/", range[2], ")")
-    }
-    for (i in 1:((num_fd_basis - 1)/2)) {
-      func_basis_cos[i] <- paste0("cos(2*pi*x*", i, "/", range[2], ")")
-    }
-
-    # Putting together
-    fd_basis_form <- c(1, rbind(func_basis_sin, func_basis_cos))
-
-    # Combining with functional data
-    x_1s <- paste0(functional_data, "*", fd_basis_form, collapse = " + ")
-
-    ########################################################################
-
-    #### Setting up beta_(s) ####
-
-    beta_basis_sin <- c()
-    beta_basis_cos <- c()
-
-    # Setting up vectors
-    for (i in 1:((num_beta_basis - 1)/2)) {
-      beta_basis_sin[i] <- paste0("sin(2*pi*x*", i, "/", range[2], ")")
-    }
-    for (i in 1:((num_beta_basis - 1)/2)) {
-      beta_basis_cos[i] <- paste0("cos(2*pi*x*", i, "/", range[2], ")")
-    }
-
-    # Combining with functional data
-    beta_basis_form <- c(1, rbind(beta_basis_sin, beta_basis_cos))
-
-    ########################################################################
-
-    #### Getting approximations ####
-
-    # Initializing - should be vector of size 11
-    integ_approximations <- c()
-
-    for (i in 1:length(beta_basis_form)) {
-
-      # Combining
-      form_approximated <- paste0(beta_basis_form[i], "*(", x_1s, ")")
-
-      # Passing to appropriate form
-      final_func <- function(x){
-        a = eval(parse(text = form_approximated))
-        return(a)
+      if(num_fd_basis > 3){
+        order_chosen_fd = 4
+      } else {
+        order_chosen_fd = num_fd_basis
       }
 
-      # Evaluating
-      integ_approximations[i] <- composite_approximator(final_func, range[1], range[2], 5000)
+      if(num_beta_basis > 3){
+        order_chosen_beta = 4
+      } else {
+        order_chosen_beta = num_beta_basis
+      }
+
+      # So, first the basis is created for functional, x(s)
+      bspline_basis_feature = create.bspline.basis(rangeval = c(range[1], range[2]),
+                                                   nbasis = num_fd_basis,
+                                                   norder = order_chosen_fd)
+
+      # evaluating b-spline basis for x(s)
+      integ_values_bspline = eval.basis(evalarg = seq(range[1], range[2], length.out = 500),
+                                        basisobj = bspline_basis_feature)
+
+      # functional observation
+      x_temp_bspline = functional_data%*%t(integ_values_bspline)
+
+      # Now making b spline for beta(s)
+      bspline_basis_beta = create.bspline.basis(rangeval = c(range[1], range[2]),
+                                                nbasis = num_beta_basis,
+                                                norder = order_chosen_beta)
+
+      # evaluating functions for beta(s)
+      bspline_evals = eval.basis(evalarg = seq(range[1], range[2], length.out = 500),
+                                 basisobj = bspline_basis_beta)
+
+      # Getting x(s)*beta basis function (integrand)
+      eval_func_bspline = apply(bspline_evals, 2, function(x){return((x*x_temp_bspline))})
+
+      # Getting integral
+      integral_bspline = apply(eval_func_bspline, 2, function(x){
+        return(auc(x = seq(range[1], range[2], length.out = 500),
+                   y = x))})
+
+      return(integral_bspline)
     }
 
-    return(integ_approximations)
-
-  }
-
-  integral_form_bspline <- function(functional_data,
-                                    beta_basis = NULL,
-                                    num_fd_basis = dim(func_cov)[1],
-                                    num_beta_basis){
 
   }
 
@@ -665,42 +556,6 @@ fnn.fit <- function(resp,
   # }
 
   # Looping to get approximations
-  # for (i in 1:dim(func_cov)[3]) {
-  #
-  #   # Current data set
-  #   df <- func_cov[,,i]
-  #
-  #   # Turning into matrix
-  #   if(is.vector(df) == TRUE){
-  #     print('yes')
-  #     test_mat = matrix(nrow = length(df), ncol = 1)
-  #     test_mat[,1] = df
-  #     df = test_mat
-  #   }
-  #
-  #   # Current number of basis and choice of basis information
-  #   cur_basis_num <- num_basis[i]
-  #   cur_basis <- basis_choice[i]
-  #
-  #   # Getting current range
-  #   cur_range <- domain_range[[i]]
-  #
-  #   # Storing previous numbers
-  #   if(i == 1){
-  #     left_end = 1
-  #     right_end = cur_basis_num
-  #   } else {
-  #     left_end = sum(num_basis[1:(i - 1)]) + 1
-  #     right_end = (left_end - 1) + cur_basis_num
-  #   }
-  #
-  #   # Getting evaluations
-  #   converted_df[, left_end:right_end] = pbapply(df, 2, integral_eval, beta_basis = cur_basis,
-  #                                              num_beta_basis = cur_basis_num,
-  #                                              range = cur_range)
-  # }
-
-  # Looping to get approximations
   print(paste0("Evaluating Integrals:"))
   for (i in 1:dim(func_cov)[3]) {
 
@@ -708,7 +563,8 @@ fnn.fit <- function(resp,
     df <- func_cov[,,i]
 
     # Turning into matrix
-    if(is.vector(df) == T){
+    if(is.vector(df) == TRUE){
+      print('yes')
       test_mat = matrix(nrow = length(df), ncol = 1)
       test_mat[,1] = df
       df = test_mat
@@ -729,28 +585,11 @@ fnn.fit <- function(resp,
       left_end = sum(num_basis[1:(i - 1)]) + 1
       right_end = (left_end - 1) + cur_basis_num
     }
-    #converted_df2 = converted_df
-    if(cur_basis == "fourier"){
-      # for (j in 1:ncol(df)) {
-      #   converted_df[j, left_end:right_end] <- c(integral_form_fourier(df[,j],
-      #                                                                  num_beta_basis = cur_basis_num,
-      #                                                                  range = cur_range))
-      # }
-      # print(converted_df)
 
-      converted_df[, left_end:right_end] = t(pbapply(df, 2, integral_form_fourier,
-                                                   num_beta_basis = cur_basis_num,
-                                                   range = cur_range))
-      # print(converted_df2)
-
-      # stop()
-
-    } else{
-
-      stop("Other basis other than 'Fourier' are not available as of yet")
-
-    }
-
+    # Getting evaluations
+    converted_df[, left_end:right_end] = t(pbapply(df, 2, integral_eval, beta_basis = cur_basis,
+                                               num_beta_basis = cur_basis_num,
+                                               range = cur_range))
   }
 
   # Now attaching scalar covariates
@@ -762,8 +601,11 @@ fnn.fit <- function(resp,
     }
   }
 
+  # Now we have the data set to pass onto the network, we can set up the data so that it is well suited to be
+  # passed onto the network. This means normalizing things and rewriting some other things
+
   # Normalize training data
-  if(covariate_scaling == T){
+  if(covariate_scaling == TRUE){
     train_x <- scale(converted_df)
   } else {
     train_x <- as.matrix(cbind(converted_df[,c(1:sum(num_basis))], scale(converted_df[,-c(1:sum(num_basis))])))

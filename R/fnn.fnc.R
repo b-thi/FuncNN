@@ -23,7 +23,7 @@
 #' library(fda)
 #'
 #' # loading data
-#' tecator = FuncNN::tecator
+#' tecator = FNN::tecator
 #'
 #' # define the time points on which the functional predictor is observed.
 #' timepts = tecator$absorp.fdata$argvals
@@ -130,8 +130,6 @@ fnn.fnc = function(model, domain_range, covariate_scaling = FALSE){
     # Doing for bspline basis
     if(cur_basis == "bspline"){
 
-      stop("This type of basis is not supported as of yet")
-
       if(length(obs_weight) > 3){
         order_chosen = 4
       } else {
@@ -197,7 +195,7 @@ fnn.fnc = function(model, domain_range, covariate_scaling = FALSE){
 
     # ggplot return
     plots_saved[[j]] = beta_coef_fnn %>%
-      ggplot(aes(x = continuum, y = beta_evals)) +
+      ggplot(aes(x = beta_coef_fnn$continuum, y = beta_coef_fnn$beta_evals)) +
       geom_line(size = 1.5, color = "blue") +
       theme_bw() +
       xlab("Continuum") +

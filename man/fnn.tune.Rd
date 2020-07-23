@@ -37,7 +37,7 @@ the number of observations, and k is the number of functional covariates.}
 \item{scalar_cov}{A matrix contained the multivariate information associated with the data set. This is all of your
 non-longitudinal data.}
 
-\item{basis_choice}{A vector of size k (the number of functional covariates) with "fourier" as the input for now.
+\item{basis_choice}{A vector of size k (the number of functional covariates) with either "fourier" or "bspline" as the inputs.
 This is the choice for the basis functions used for the functional weight expansion. If you only specify one, with k > 1,
 then the argument will repeat that choice for all k functional covariates.}
 
@@ -95,8 +95,7 @@ temp_fd = Data2fd(timepts, daily$tempav, tempbasis65)
 # Data set up
 temp_data[,,1] = temp_fd$coefs
 
-# Creating grid (edit as you like to see how it changes the final grid)
-# For example, you could add more possible activation_choice options like sigmoidal, etc.
+# Creating grid
 tune_list_weather = list(num_hidden_layers = c(2),
                          neurons = c(8, 16),
                          epochs = c(250),
@@ -104,7 +103,7 @@ tune_list_weather = list(num_hidden_layers = c(2),
                          patience = c(15),
                          learn_rate = c(0.01, 0.1),
                          num_basis = c(7),
-                         activation_choice = c("relu"))
+                         activation_choice = c("relu", "sigmoid"))
 
 # Running Tuning
 weather_tuned = fnn.tune(tune_list_weather,
