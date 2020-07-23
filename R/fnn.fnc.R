@@ -130,6 +130,8 @@ fnn.fnc = function(model, domain_range, covariate_scaling = FALSE){
     # Doing for bspline basis
     if(cur_basis == "bspline"){
 
+      stop("This type of basis is not supported as of yet")
+
       if(length(obs_weight) > 3){
         order_chosen = 4
       } else {

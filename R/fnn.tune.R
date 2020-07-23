@@ -36,7 +36,7 @@
 #' @param scalar_cov A matrix contained the multivariate information associated with the data set. This is all of your
 #' non-longitudinal data.
 #'
-#' @param basis_choice A vector of size k (the number of functional covariates) with either "fourier" or "bspline" as the inputs.
+#' @param basis_choice A vector of size k (the number of functional covariates) with "fourier" as the input for now.
 #' This is the choice for the basis functions used for the functional weight expansion. If you only specify one, with k > 1,
 #' then the argument will repeat that choice for all k functional covariates.
 #'
@@ -74,7 +74,8 @@
 #' # Data set up
 #' temp_data[,,1] = temp_fd$coefs
 #'
-#' # Creating grid
+#' # Creating grid (edit as you like to see how it changes the final grid)
+#' # For example, you could add more possible activation_choice options like sigmoidal, etc.
 #' tune_list_weather = list(num_hidden_layers = c(2),
 #'                          neurons = c(8, 16),
 #'                          epochs = c(250),
@@ -82,7 +83,7 @@
 #'                          patience = c(15),
 #'                          learn_rate = c(0.01, 0.1),
 #'                          num_basis = c(7),
-#'                          activation_choice = c("relu", "sigmoid"))
+#'                          activation_choice = c("relu"))
 #'
 #' # Running Tuning
 #' weather_tuned = fnn.tune(tune_list_weather,
@@ -145,10 +146,9 @@ fnn.tune = function(tune_list,
       # Getting current domain
       curr_domain = domain_range[[1]] # BE CAREFUL HERE - ALL DOMAINS NEED TO BE THE SAME IN THIS CASE
 
-      # Creating basis (using bspline)
-      basis_setup = create.bspline.basis(rangeval = c(curr_domain[1], curr_domain[2]),
-                                         nbasis = 31,
-                                         norder = 4)
+      # Creating basis (using fourier)
+      basis_setup = create.fourier.basis(rangeval = c(curr_domain[1], curr_domain[2]),
+                                         nbasis = 31)
 
       # Time points
       time_points = seq(curr_domain[1], curr_domain[2], length.out = ncol(curr_func))

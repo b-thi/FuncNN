@@ -201,10 +201,9 @@ fnn.cv <- function(nfolds,
       # Getting current domain
       curr_domain = domain_range[[t]]
 
-      # Creating basis (using bspline)
-      basis_setup = create.bspline.basis(rangeval = c(curr_domain[1], curr_domain[2]),
-                                         nbasis = 31,
-                                         norder = 4)
+      # Creating basis (using fourier)
+      basis_setup = create.fourier.basis(rangeval = c(curr_domain[1], curr_domain[2]),
+                                         nbasis = 31)
 
       # Time points
       time_points = seq(curr_domain[1], curr_domain[2], length.out = ncol(curr_func))

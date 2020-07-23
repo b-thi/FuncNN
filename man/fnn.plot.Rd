@@ -44,7 +44,7 @@ data("daily")
 # Creating functional data
 temp_data = array(dim = c(65, 35, 1))
 tempbasis65  = create.fourier.basis(c(0,365), 65)
-tempbasis7 = create.bspline.basis(c(0,365), 7, norder = 4)
+tempbasis7 = create.fourier.basis(c(0,365), 7)
 timepts = seq(1, 365, 1)
 temp_fd = Data2fd(timepts, daily$tempav, tempbasis65)
 prec_fd = Data2fd(timepts, daily$precav, tempbasis7)
@@ -73,7 +73,7 @@ resp_test = t(resp_mat[,-ind])
 weather_func_fnn <- fnn.fit(resp = resp_train,
                             func_cov = weather_data_train,
                             scalar_cov = scalar_train,
-                            basis_choice = c("bspline"),
+                            basis_choice = c("fourier"),
                             num_basis = c(7),
                             hidden_layers = 2,
                             neurons_per_layer = c(1024, 1024),
@@ -87,11 +87,11 @@ weather_func_fnn <- fnn.fit(resp = resp_train,
 predictions = fnn.predict(weather_func_fnn,
                           weather_data_test,
                           scalar_cov = scalar_test,
-                          basis_choice = c("bspline"),
+                          basis_choice = c("fourier"),
                           num_basis = c(7),
                           domain_range = list(c(1, 365)))
 
 # Looking at plot
-fnn.plot(predictions, domain_range = c(1, 365), step_size = 1, Basis_Type = "bspline")
+fnn.plot(predictions, domain_range = c(1, 365), step_size = 1, Basis_Type = "fourier")
 
 }
