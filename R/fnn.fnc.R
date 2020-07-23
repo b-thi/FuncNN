@@ -197,7 +197,7 @@ fnn.fnc = function(model, domain_range, covariate_scaling = FALSE){
 
     # ggplot return
     plots_saved[[j]] = beta_coef_fnn %>%
-      ggplot(aes(x = beta_coef_fnn$continuum, y = beta_coef_fnn$beta_evals)) +
+      ggplot(aes(x = continuum, y = beta_evals)) +
       geom_line(size = 1.5, color = "blue") +
       theme_bw() +
       xlab("Continuum") +
