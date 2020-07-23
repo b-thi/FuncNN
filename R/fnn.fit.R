@@ -701,7 +701,7 @@ fnn.fit <- function(resp,
   # }
 
   # Looping to get approximations
-  print(paste0("Evaluating Integrals:"))
+  # print(paste0("Evaluating Integrals:"))
   for (i in 1:dim(func_cov)[3]) {
 
     # Current data set

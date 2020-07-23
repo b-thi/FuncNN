@@ -74,7 +74,8 @@
 #' # Data set up
 #' temp_data[,,1] = temp_fd$coefs
 #'
-#' # Creating grid
+#' # Creating grid (edit as you like to see how it changes the final grid)
+#' # For example, you could add more possible activation_choice options like sigmoidal, etc.
 #' tune_list_weather = list(num_hidden_layers = c(2),
 #'                          neurons = c(8, 16),
 #'                          epochs = c(250),
@@ -82,7 +83,7 @@
 #'                          patience = c(15),
 #'                          learn_rate = c(0.01, 0.1),
 #'                          num_basis = c(7),
-#'                          activation_choice = c("relu", "sigmoid"))
+#'                          activation_choice = c("relu"))
 #'
 #' # Running Tuning
 #' weather_tuned = fnn.tune(tune_list_weather,
