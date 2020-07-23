@@ -743,7 +743,7 @@ fnn.fit <- function(resp,
       #                                              range = cur_range)
       # print(converted_df2)
       #
-       stop()
+      # stop()
 
     } else{
 
