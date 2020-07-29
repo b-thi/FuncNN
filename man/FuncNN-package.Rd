@@ -22,7 +22,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Barinder Thind \email{barinder.thi@gmail.com} [copyright holder]
+\strong{Maintainer}: Barinder Thind \email{barinder.thi@gmail.com}
 
 Authors:
 \itemize{

@@ -3,7 +3,7 @@ Title: Functional Neural Networks
 Version: 1.0
 Authors@R: c(
     person("Richard", "Groenewald", role = "ctb"),
-    person("Barinder", "Thind", , "barinder.thi@gmail.com", role = c("aut", "cre", "cph")),
+    person("Barinder", "Thind", email = "barinder.thi@gmail.com", role = c("aut", "cre")),
     person("Jiguo", "Cao", role = "aut"),
     person("Sidi Wu", role = "ctb")
     )
@@ -24,7 +24,7 @@ Imports: keras,
          foreach,
          Matrix
 URL: https://arxiv.org/abs/2006.09590, https://github.com/b-thi/FuncNN
-License: Unlimited
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
