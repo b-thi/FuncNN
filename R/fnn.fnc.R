@@ -176,6 +176,7 @@ fnn.fnc = function(model, domain_range, covariate_scaling = FALSE){
                             cur_domain = current_range)
 
       # Getting updated function
+      continuum = NULL; beta_evals = NULL
       beta_coef_fnn <- data.frame(continuum = seq(current_range[1], current_range[2], length.out = 500),
                                   beta_evals = vals)
 

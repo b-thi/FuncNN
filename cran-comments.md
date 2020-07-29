@@ -7,4 +7,4 @@
 There were no ERRORs, WARNINGs or NOTEs. 
 
 ## Other Relevant Information
-This is the first submission of this package to CRAN.  For this reason, we have tentatively included instructions on how to install the package from CRAN in our README, which have been commented out
+This is the first submission of this package to CRAN.  For this reason, we have tentatively included instructions on how to install the package from CRAN in our README, which have been commented out.

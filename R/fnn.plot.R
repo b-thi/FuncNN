@@ -111,6 +111,7 @@ fnn.plot <- function(FNN_Predict_Object,
     colnames(fd_ds) = c("Continuum", "Obs", "Value")
 
     # Plotting functional observations
+    Continuum = NULL; Value = NULL; Obs = NULL
     print(ggplot(data = fd_ds, aes(x = Continuum, y = Value, color = as.factor(Obs))) +
             geom_line(size = 1.25) +
             theme_bw() +
