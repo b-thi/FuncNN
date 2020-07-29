@@ -30,7 +30,7 @@ You can install `FuncNN` from GitHub with the following commands:
 
 ``` r
 library(devtools)
-install_github("b-thi/FNN")
+install_github("b-thi/FuncNN")
 ```
 
 Example
@@ -42,10 +42,10 @@ First, we'll read in the data and load some libraries.
 
 ``` r
 # Library
-library(FNN)
+library(FuncNN)
 
 # Loading data
-tecator = FNN::tecator
+tecator = FuncNN::tecator
 ```
 
 We'll do a classification example using meat samples with fat contents &gt; 25 as "high fat" and &lt; 25 as "low fat" as the dependent variable.
@@ -100,7 +100,45 @@ fit_class = fnn.fit(resp = train_y,
                     epochs = 100,
                     raw_data = T,
                     early_stopping = T)
+#> [1] "Evaluating Integrals:"
+#> Model
+#> Model: "sequential"
+#> ___________________________________________________________________________
+#> Layer (type)                     Output Shape                  Param #     
+#> ===========================================================================
+#> dense (Dense)                    (None, 24)                    216         
+#> ___________________________________________________________________________
+#> dense_1 (Dense)                  (None, 24)                    600         
+#> ___________________________________________________________________________
+#> dense_2 (Dense)                  (None, 24)                    600         
+#> ___________________________________________________________________________
+#> dense_3 (Dense)                  (None, 24)                    600         
+#> ___________________________________________________________________________
+#> dense_4 (Dense)                  (None, 24)                    600         
+#> ___________________________________________________________________________
+#> dense_5 (Dense)                  (None, 58)                    1450        
+#> ___________________________________________________________________________
+#> dense_6 (Dense)                  (None, 2)                     118         
+#> ===========================================================================
+#> Total params: 4,184
+#> Trainable params: 4,184
+#> Non-trainable params: 0
+#> ___________________________________________________________________________
+#> 
+#> 
+#> 
+#> xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
+
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+
+    #> 
+    #> Trained on 128 samples (batch_size=32, epochs=43)
+    #> Final epoch (plot to see history):
+    #>                   loss: 0.002038
+    #>     mean_squared_error: 0.002038
+    #>               val_loss: 0.02997
+    #> val_mean_squared_error: 0.02997
 
 Here, we fit a 6 layer model. There are a number of warnings and error checks in place to make sure that all the dimensionality is consistent. The first three inputs are all objects we defined above! Also, observe that raw\_data is true here; this is important to indicate as it tells the model function to do the pre-processing.
 
@@ -119,6 +157,33 @@ rounded_preds = ifelse(round(predict_class)[,2] == 1, 1, 0)
 
 # Confusion matrix
 caret::confusionMatrix(as.factor(rounded_preds), as.factor(test_y))
+#> Confusion Matrix and Statistics
+#> 
+#>           Reference
+#> Prediction  0  1
+#>          0 39  1
+#>          1  0 14
+#>                                           
+#>                Accuracy : 0.9815          
+#>                  95% CI : (0.9011, 0.9995)
+#>     No Information Rate : 0.7222          
+#>     P-Value [Acc > NIR] : 5.082e-07       
+#>                                           
+#>                   Kappa : 0.9529          
+#>                                           
+#>  Mcnemar's Test P-Value : 1               
+#>                                           
+#>             Sensitivity : 1.0000          
+#>             Specificity : 0.9333          
+#>          Pos Pred Value : 0.9750          
+#>          Neg Pred Value : 1.0000          
+#>              Prevalence : 0.7222          
+#>          Detection Rate : 0.7222          
+#>    Detection Prevalence : 0.7407          
+#>       Balanced Accuracy : 0.9667          
+#>                                           
+#>        'Positive' Class : 0               
+#> 
 ```
 
 Not bad.
