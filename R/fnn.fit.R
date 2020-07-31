@@ -265,6 +265,7 @@
 #' @importFrom caret createFolds
 #' @importFrom caret confusionMatrix
 #' @importFrom stats predict
+#' @importFrom graphics plot
 
 #returns product of two numbers, as a trivial example
 fnn.fit <- function(resp,

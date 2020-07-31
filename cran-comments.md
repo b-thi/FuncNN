@@ -1,3 +1,6 @@
+## FuncNN Package Information
+This is the first submission of this package to CRAN.  For this reason, we have tentatively included instructions on how to install the package from CRAN in our README, which have been commented out.
+
 ## Test environments
 * SYSTEM, R VERSION NUMBER (LOCAL MACHINES)
 * SYSTEM, R VERSION NUMBER (MAYBE ON TRAVIS CI)
@@ -5,6 +8,3 @@
 
 ## R CMD check results
 There were no ERRORs, WARNINGs or NOTEs. 
-
-## Other Relevant Information
-This is the first submission of this package to CRAN.  For this reason, we have tentatively included instructions on how to install the package from CRAN in our README, which have been commented out.

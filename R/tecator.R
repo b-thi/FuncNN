@@ -8,7 +8,7 @@
 #'
 #' @keywords datasets
 #'
-#' @references Reference can be found in "Deep Learning with Functional Inputs".
+#' @references Thodberg, H. H. (2015), “Tecator meat sample dataset,” StatLib Datasets Archive, http://lib.stat.cmu.edu/datasets/tecator.
 #'
 #'
 "tecator"

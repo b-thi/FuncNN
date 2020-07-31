@@ -14,6 +14,6 @@ data(daily)
 Classic Canadian weather data set.
 }
 \references{
-Reference can be found in "Deep Learning with Functional Inputs".
+Ramsay J, Hooker G, Graves S (2009). \emph{Functional Data Analysis with R and MATLAB}. Springer-Verlag, New York. ISBN 9780387981857.
 }
 \keyword{datasets}
