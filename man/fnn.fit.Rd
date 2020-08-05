@@ -123,6 +123,7 @@ with a generalized input space.
 Updates coming soon.
 }
 \examples{
+\donttest{
 # First, an easy example with raw_data = T
 
 # Loading in data
@@ -290,7 +291,7 @@ weather_func_fnn <- fnn.fit(resp = resp_train,
                             epochs = 300,
                             learn_rate = 0.01,
                             func_resp_method = 1)
-
+}
 
 
 }

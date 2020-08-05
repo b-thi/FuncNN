@@ -77,6 +77,7 @@ This function only works for scalar responses.
 No additional details for now.
 }
 \examples{
+\donttest{
 # libraries
 library(fda)
 
@@ -115,5 +116,6 @@ weather_tuned = fnn.tune(tune_list_weather,
 
 # Looking at results
 weather_tuned
+}
 
 }

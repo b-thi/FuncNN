@@ -28,6 +28,7 @@ This function outputs plots and \code{ggplot()} objects of the functional weight
 No additional details for now.
 }
 \examples{
+\donttest{
 # libraries
 library(fda)
 
@@ -82,5 +83,6 @@ tecator_fnn = fnn.fit(resp = tecResp_train,
 est_func_weights = fnn.fnc(tecator_fnn, domain_range = list(c(850, 1050),
                                                             c(850, 1050),
                                                             c(850, 1050)))
+}
 
 }

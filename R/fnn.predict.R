@@ -41,6 +41,7 @@
 #' internally take care of that pre-processing.
 #'
 #' @examples
+#' \donttest{
 #' # First, we do an example with a scalar response:
 #'
 #' # loading data
@@ -215,6 +216,7 @@
 #'
 #' # Confusion matrix
 #' # caret::confusionMatrix(as.factor(rounded_preds), as.factor(test_y))
+#'}
 #'
 #'
 #' @export

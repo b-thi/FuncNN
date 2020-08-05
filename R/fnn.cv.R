@@ -80,6 +80,7 @@
 #' internally take care of that pre-processing.
 #'
 #' @examples
+#' \donttest{
 #' # Libraries
 #' library(fda)
 #'
@@ -116,6 +117,7 @@
 #'                      scalar_cov = scalar_full,
 #'                      domain_range = list(c(1, 365)),
 #'                      learn_rate = 0.001)
+#'}
 #'
 #' @export
 # @import keras tensorflow fda.usc fda ggplot2 ggpubr pbapply reshape2 flux Matrix doParallel

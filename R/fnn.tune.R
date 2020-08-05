@@ -56,6 +56,7 @@
 #' internally take care of that pre-processing.
 #'
 #' @examples
+#' \donttest{
 #' # libraries
 #' library(fda)
 #'
@@ -94,7 +95,7 @@
 #'
 #' # Looking at results
 #' weather_tuned
-
+#' }
 #'
 #' @export
 # @import keras tensorflow fda.usc fda ggplot2 ggpubr caret pbapply reshape2 flux Matrix doParallel

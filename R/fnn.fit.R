@@ -90,6 +90,7 @@
 #' of layers specifying what percentage to drop in each layer.
 #'
 #' @examples
+#' \donttest{
 #' # First, an easy example with raw_data = T
 #'
 #' # Loading in data
@@ -257,7 +258,7 @@
 #'                             epochs = 300,
 #'                             learn_rate = 0.01,
 #'                             func_resp_method = 1)
-#'
+#'}
 #'
 #'
 #' @export

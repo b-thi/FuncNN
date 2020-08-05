@@ -35,6 +35,7 @@ This function is to be used for functional responses. It outputs a \code{ggplot(
 No additional details for now.
 }
 \examples{
+\donttest{
 # libraries
 library(fda)
 
@@ -93,5 +94,6 @@ predictions = fnn.predict(weather_func_fnn,
 
 # Looking at plot
 fnn.plot(predictions, domain_range = c(1, 365), step_size = 1, Basis_Type = "bspline")
+}
 
 }

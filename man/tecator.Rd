@@ -14,6 +14,6 @@ data(tecator)
 Classic Tecator data set.
 }
 \references{
-Thodberg, H. H. (2015), “Tecator meat sample dataset,” StatLib Datasets Archive, http://lib.stat.cmu.edu/datasets/tecator.
+Thodberg, H. H. (2015). “Tecator meat sample dataset.” StatLib Datasets Archive. http://lib.stat.cmu.edu/datasets/tecator.
 }
 \keyword{datasets}

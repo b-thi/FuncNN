@@ -19,6 +19,7 @@
 #' @param covariate_scaling If True, then data will be internally scaled before model development.
 #'
 #' @examples
+#' \donttest{
 #' # libraries
 #' library(fda)
 #'
@@ -73,6 +74,7 @@
 #' est_func_weights = fnn.fnc(tecator_fnn, domain_range = list(c(850, 1050),
 #'                                                             c(850, 1050),
 #'                                                             c(850, 1050)))
+#'}
 #'
 #' @export
 # @import keras tensorflow fda.usc fda ggplot2 ggpubr caret pbapply reshape2 flux Matrix doParallel

@@ -21,6 +21,7 @@
 #' @param step_size The size of the movement from the lower bound of the `domanin_range` to the upper bound.
 #'
 #' @examples
+#' \donttest{
 #' # libraries
 #' library(fda)
 #'
@@ -79,6 +80,7 @@
 #'
 #' # Looking at plot
 #' fnn.plot(predictions, domain_range = c(1, 365), step_size = 1, Basis_Type = "bspline")
+#'}
 #'
 #' @export
 # @import keras tensorflow fda.usc fda ggplot2 ggpubr caret pbapply reshape2 flux Matrix doParallel

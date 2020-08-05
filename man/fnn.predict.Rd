@@ -59,6 +59,7 @@ The prediction function associated with the fnn model allowing for users to quic
 No additional details for now.
 }
 \examples{
+\donttest{
 # First, we do an example with a scalar response:
 
 # loading data
@@ -233,6 +234,7 @@ rounded_preds = ifelse(round(predict_class)[,2] == 1, 1, 0)
 
 # Confusion matrix
 # caret::confusionMatrix(as.factor(rounded_preds), as.factor(test_y))
+}
 
 
 }

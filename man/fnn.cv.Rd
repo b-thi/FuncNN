@@ -113,6 +113,7 @@ additional parameter of fold choice. This function only works for scalar respons
 No additional details for now.
 }
 \examples{
+\donttest{
 # Libraries
 library(fda)
 
@@ -149,5 +150,6 @@ cv_example <- fnn.cv(nfolds = 5,
                      scalar_cov = scalar_full,
                      domain_range = list(c(1, 365)),
                      learn_rate = 0.001)
+}
 
 }
