@@ -7,7 +7,7 @@ Authors@R: c(
     person("Jiguo", "Cao", role = "aut"),
     person("Sidi Wu", role = "ctb")
     )
-Description: This package fits models of the form y(z, f(x) | theta) = z + f(x) + epsilon. In other words, this package will allow users to build
+Description: A collection of functions which fits models of the form y(z, f(x) | theta) = z + f(x) + epsilon. In other words, this package will allow users to build
              models that have either functional or scalar responses paired with functional and scalar covariates. We implement the theoretical discussion 
              found in (Thind, Multani and Cao, 2020), applying the framework of fitting neural networks to functional data analysis with a number of helper 
              functions that make workflow easier for the user.
