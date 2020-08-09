@@ -6,10 +6,13 @@
 \alias{FuncNN-package}
 \title{FuncNN: Functional Neural Networks}
 \description{
-A collection of functions which fits models of the form y(z, f(x) | theta) = z + f(x) + epsilon. In other words, this package will allow users to build
-             models that have either functional or scalar responses paired with functional and scalar covariates. We implement the theoretical discussion 
-             found in (Thind, Multani and Cao, 2020), applying the framework of fitting neural networks to functional data analysis with a number of helper 
-             functions that make workflow easier for the user.
+A collection of functions which fit functional neural network models. In
+            other words, this package will allow users to build deep learning models 
+            that have either functional or scalar responses paired with functional and 
+            scalar covariates. We implement the theoretical discussion found 
+            in (Thind, Multani and Cao, 2020) through the help of a main fitting and 
+            prediction function as well as a number of helper functions to help with 
+            cross-validation, tuning, and displaying estimated functional weights.
 }
 \references{
 Thind B, Multani K, Cao J (2020). “Deep Learning with Functional Inputs.” 2006.09590. https://arxiv.org/abs/2006.09590.
