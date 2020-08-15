@@ -366,7 +366,7 @@ fnn.fit <- function(resp,
     domain_range = domain_range_list
 
     # Warning
-    message("Warning: You only specified basis information for one functional covariate -- it will be repeated for all functional covariates")
+    print("Warning: You only specified basis information for one functional covariate -- it will be repeated for all functional covariates")
 
   }
 
@@ -559,7 +559,7 @@ fnn.fit <- function(resp,
 
   # Looping to get approximations
   if(print_info == TRUE){
-    message(paste0("Evaluating Integrals:"))
+    print(paste0("Evaluating Integrals:"))
   }
   for (i in 1:dim(func_cov)[3]) {
 
