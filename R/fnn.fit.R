@@ -680,7 +680,7 @@ fnn.fit <- function(resp,
                          metric_choice)
 
     if(print_info ==  TRUE){
-      message(model)
+      print(model)
     }
 
     # We can also display the progress of the network to make it easier to visualize using the following. This is
@@ -688,7 +688,7 @@ fnn.fit <- function(resp,
     print_dot_callback <- callback_lambda(
       on_epoch_end = function(epoch, logs) {
         if (epoch %% 80 == 0) cat("\n")
-        message("x")
+        print("x")
       }
     )
 
@@ -749,7 +749,7 @@ fnn.fit <- function(resp,
 
     # Printing out
     if(print_info == TRUE){
-      message(history)
+      print(history)
     }
   }
 
@@ -800,7 +800,7 @@ fnn.fit <- function(resp,
                          metric_choice)
 
     if(print_info ==  TRUE){
-      message(model)
+      print(model)
     }
 
     # We can also display the progress of the network to make it easier to visualize using the following. This is
@@ -808,7 +808,7 @@ fnn.fit <- function(resp,
     print_dot_callback <- callback_lambda(
       on_epoch_end = function(epoch, logs) {
         if (epoch %% 80 == 0) cat("\n")
-        message("x")
+        print("x")
       }
     )
 
@@ -869,7 +869,7 @@ fnn.fit <- function(resp,
 
     # Printing out
     if(print_info == TRUE){
-      message(history)
+      print(history)
     }
 
 
@@ -942,7 +942,7 @@ fnn.fit <- function(resp,
                          metric_choice)
 
     if(print_info ==  TRUE){
-      message(model)
+      print(model)
     }
 
     # We can also display the progress of the network to make it easier to visualize using the following. This is
@@ -1011,7 +1011,7 @@ fnn.fit <- function(resp,
 
     # Printing out
     if(print_info == TRUE){
-      message(history)
+      print(history)
     }
   }
 
@@ -1073,7 +1073,7 @@ fnn.fit <- function(resp,
                          metric_choice)
 
     if(print_info ==  TRUE){
-      message(model)
+      print(model)
     }
 
     # We can also display the progress of the network to make it easier to visualize using the following. This is
@@ -1081,7 +1081,7 @@ fnn.fit <- function(resp,
     print_dot_callback <- callback_lambda(
       on_epoch_end = function(epoch, logs) {
         if (epoch %% 80 == 0) cat("\n")
-        message("x")
+        print("x")
       }
     )
 
@@ -1142,7 +1142,7 @@ fnn.fit <- function(resp,
 
     # Printing out
     if(print_info == TRUE){
-      message(history)
+      print(history)
     }
 
 
