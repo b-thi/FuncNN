@@ -155,7 +155,7 @@
 #'                             domain_range = list(c(850, 1050)),
 #'                             raw_data = TRUE)
 #'
-#' # Example with Pre-Processing (raw_data = F)
+#' # Example with Pre-Processing (raw_data = FALSE)
 #'
 #' # loading data
 #' tecator = FuncNN::tecator
@@ -366,7 +366,7 @@ fnn.fit <- function(resp,
     domain_range = domain_range_list
 
     # Warning
-    print("Warning: You only specified basis information for one functional covariate -- it will be repeated for all functional covariates")
+    message("Warning: You only specified basis information for one functional covariate -- it will be repeated for all functional covariates")
 
   }
 
@@ -559,7 +559,7 @@ fnn.fit <- function(resp,
 
   # Looping to get approximations
   if(print_info == TRUE){
-    print(paste0("Evaluating Integrals:"))
+    message(paste0("Evaluating Integrals:"))
   }
   for (i in 1:dim(func_cov)[3]) {
 
@@ -568,7 +568,7 @@ fnn.fit <- function(resp,
 
     # Turning into matrix
     if(is.vector(df) == TRUE){
-      print('yes')
+      # print('yes')
       test_mat = matrix(nrow = length(df), ncol = 1)
       test_mat[,1] = df
       df = test_mat
@@ -591,7 +591,7 @@ fnn.fit <- function(resp,
     }
 
     # Getting evaluations
-    if(print_info == T){
+    if(print_info == TRUE){
       converted_df[, left_end:right_end] = t(pbapply(df, 2, integral_eval, beta_basis = cur_basis,
                                                      num_beta_basis = cur_basis_num,
                                                      range = cur_range))
@@ -679,8 +679,8 @@ fnn.fit <- function(resp,
                          loss_choice,
                          metric_choice)
 
-    if(print_info ==  T){
-      print(model)
+    if(print_info ==  TRUE){
+      message(model)
     }
 
     # We can also display the progress of the network to make it easier to visualize using the following. This is
@@ -688,7 +688,7 @@ fnn.fit <- function(resp,
     print_dot_callback <- callback_lambda(
       on_epoch_end = function(epoch, logs) {
         if (epoch %% 80 == 0) cat("\n")
-        cat("x")
+        message("x")
       }
     )
 
@@ -749,7 +749,7 @@ fnn.fit <- function(resp,
 
     # Printing out
     if(print_info == TRUE){
-      print(history)
+      message(history)
     }
   }
 
@@ -800,7 +800,7 @@ fnn.fit <- function(resp,
                          metric_choice)
 
     if(print_info ==  TRUE){
-      print(model)
+      message(model)
     }
 
     # We can also display the progress of the network to make it easier to visualize using the following. This is
@@ -808,7 +808,7 @@ fnn.fit <- function(resp,
     print_dot_callback <- callback_lambda(
       on_epoch_end = function(epoch, logs) {
         if (epoch %% 80 == 0) cat("\n")
-        cat("x")
+        message("x")
       }
     )
 
@@ -869,7 +869,7 @@ fnn.fit <- function(resp,
 
     # Printing out
     if(print_info == TRUE){
-      print(history)
+      message(history)
     }
 
 
@@ -941,8 +941,8 @@ fnn.fit <- function(resp,
                          loss_choice,
                          metric_choice)
 
-    if(print_info ==  T){
-      print(model)
+    if(print_info ==  TRUE){
+      message(model)
     }
 
     # We can also display the progress of the network to make it easier to visualize using the following. This is
@@ -1011,7 +1011,7 @@ fnn.fit <- function(resp,
 
     # Printing out
     if(print_info == TRUE){
-      print(history)
+      message(history)
     }
   }
 
@@ -1073,7 +1073,7 @@ fnn.fit <- function(resp,
                          metric_choice)
 
     if(print_info ==  TRUE){
-      print(model)
+      message(model)
     }
 
     # We can also display the progress of the network to make it easier to visualize using the following. This is
@@ -1081,7 +1081,7 @@ fnn.fit <- function(resp,
     print_dot_callback <- callback_lambda(
       on_epoch_end = function(epoch, logs) {
         if (epoch %% 80 == 0) cat("\n")
-        cat("x")
+        message("x")
       }
     )
 
@@ -1142,7 +1142,7 @@ fnn.fit <- function(resp,
 
     # Printing out
     if(print_info == TRUE){
-      print(history)
+      message(history)
     }
 
 

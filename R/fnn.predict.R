@@ -35,9 +35,9 @@
 #' @param domain_range List of size k. Each element of the list is a 2-dimensional vector containing the upper and lower
 #' bounds of the k-th functional weight. Must be the same covariates as input into `fnn.fit()`.
 #'
-#' @param covariate_scaling If True, then data will be internally scaled before model development.
+#' @param covariate_scaling If TRUE, then data will be internally scaled before model development.
 #'
-#' @param raw_data If True, then user does not need to create functional observations beforehand. The function will
+#' @param raw_data If TRUE, then user does not need to create functional observations beforehand. The function will
 #' internally take care of that pre-processing.
 #'
 #' @examples
@@ -262,7 +262,7 @@ fnn.predict = function(model,
     domain_range = domain_range_list
 
     # Warning
-    print("Warning: You only specified basis information for one functional covariate -- it will be repeated for all functional covariates")
+    message("Warning: You only specified basis information for one functional covariate -- it will be repeated for all functional covariates")
 
   }
 
@@ -417,7 +417,7 @@ fnn.predict = function(model,
   #   df <- func_cov[,,i]
   #
   #   # Turning into matrix
-  #   if(is.vector(df) == T){
+  #   if(is.vector(df) == TRUE){
   #     print('yes')
   #     test_mat = matrix(nrow = length(df), ncol = 1)
   #     test_mat[,1] = df
@@ -465,7 +465,7 @@ fnn.predict = function(model,
   # Looping to get approximations
   print_info = FALSE
   if(print_info == TRUE){
-    print(paste0("Evaluating Integrals:"))
+    message(paste0("Evaluating Integrals:"))
   }
   for (i in 1:dim(func_cov)[3]) {
 
@@ -497,7 +497,7 @@ fnn.predict = function(model,
 
     # Getting evaluations
 
-    if(print_info == T){
+    if(print_info == TRUE){
       converted_df[, left_end:right_end] = t(pbapply(df, 2, integral_eval, beta_basis = cur_basis,
                                                      num_beta_basis = cur_basis_num,
                                                      range = cur_range))

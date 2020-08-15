@@ -22,7 +22,7 @@ fnn.cv(
   learn_rate = 0.001,
   patience_param = 15,
   early_stopping = TRUE,
-  print_info = T,
+  print_info = TRUE,
   batch_size = 32,
   decay_rate = 0,
   func_resp_method = 1,
@@ -77,9 +77,9 @@ bounds of the k-th functional weight.}
 \item{patience_param}{A keras parameter that decides how many additional \code{epochs} are eclipsed with minimal change in
 error before the learning process is stopped. This is only active if \code{early_stopping = TRUE}}
 
-\item{early_stopping}{If True, then learning process will be halted early if error improvement isn't seen.}
+\item{early_stopping}{If TRUE, then learning process will be halted early if error improvement isn't seen.}
 
-\item{print_info}{If True, function will output information about the model as it is trained.}
+\item{print_info}{If TRUE, function will output information about the model as it is trained.}
 
 \item{batch_size}{Size of the batch for stochastic gradient descent.}
 
@@ -89,7 +89,7 @@ iterations are completed.}
 \item{func_resp_method}{Set to 1 by default. In the future, this will be set to 2 for an alternative functional response
 approach.}
 
-\item{covariate_scaling}{If True, then data will be internally scaled before model development.}
+\item{covariate_scaling}{If TRUE, then data will be internally scaled before model development.}
 
 \item{raw_data}{If True, then user does not need to create functional observations beforehand. The function will
 internally take care of that pre-processing.}

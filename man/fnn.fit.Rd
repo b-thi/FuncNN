@@ -188,7 +188,7 @@ predict_class = fnn.predict(fit_class,
                             domain_range = list(c(850, 1050)),
                             raw_data = TRUE)
 
-# Example with Pre-Processing (raw_data = F)
+# Example with Pre-Processing (raw_data = FALSE)
 
 # loading data
 tecator = FuncNN::tecator

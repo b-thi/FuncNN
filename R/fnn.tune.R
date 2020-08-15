@@ -300,7 +300,7 @@ fnn.tune = function(tune_list,
 
       # Printing where we are at
       cat("\n")
-      print(paste0("Done tuning for: ", current_layer, " hidden layers."))
+      message(paste0("Done tuning for: ", current_layer, " hidden layers."))
 
     }
 
@@ -323,7 +323,7 @@ fnn.tune = function(tune_list,
 
   } else {
 
-    print("Tuning isn't available yet for functional responses")
+    message("Tuning isn't available yet for functional responses")
 
     return()
 

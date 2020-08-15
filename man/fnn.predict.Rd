@@ -42,9 +42,9 @@ k functional covariates. Should be the same values as input into
 \item{domain_range}{List of size k. Each element of the list is a 2-dimensional vector containing the upper and lower
 bounds of the k-th functional weight. Must be the same covariates as input into \code{fnn.fit()}.}
 
-\item{covariate_scaling}{If True, then data will be internally scaled before model development.}
+\item{covariate_scaling}{If TRUE, then data will be internally scaled before model development.}
 
-\item{raw_data}{If True, then user does not need to create functional observations beforehand. The function will
+\item{raw_data}{If TRUE, then user does not need to create functional observations beforehand. The function will
 internally take care of that pre-processing.}
 }
 \value{

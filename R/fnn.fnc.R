@@ -16,7 +16,7 @@
 #' @param domain_range List of size k. Each element of the list is a 2-dimensional vector containing the upper and lower
 #' bounds of the k-th functional weight. Must be the same covariates as input into `fnn.fit()`.
 #'
-#' @param covariate_scaling If True, then data will be internally scaled before model development.
+#' @param covariate_scaling If TRUE, then data will be internally scaled before model development.
 #'
 #' @examples
 #' \donttest{

@@ -12,7 +12,7 @@ fnn.fnc(model, domain_range, covariate_scaling = FALSE)
 \item{domain_range}{List of size k. Each element of the list is a 2-dimensional vector containing the upper and lower
 bounds of the k-th functional weight. Must be the same covariates as input into \code{fnn.fit()}.}
 
-\item{covariate_scaling}{If True, then data will be internally scaled before model development.}
+\item{covariate_scaling}{If TRUE, then data will be internally scaled before model development.}
 }
 \value{
 The following are returned:
