@@ -950,7 +950,7 @@ fnn.fit <- function(resp,
     print_dot_callback <- callback_lambda(
       on_epoch_end = function(epoch, logs) {
         if (epoch %% 80 == 0) cat("\n")
-        cat("x")
+        print("x")
       }
     )
 
