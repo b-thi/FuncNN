@@ -10,12 +10,12 @@ A collection of functions which fit functional neural network models. In
             other words, this package will allow users to build deep learning models 
             that have either functional or scalar responses paired with functional and 
             scalar covariates. We implement the theoretical discussion found 
-            in (Thind, Multani and Cao, 2020) through the help of a main fitting and 
-            prediction function as well as a number of helper functions to help with 
-            cross-validation, tuning, and displaying estimated functional weights.
+            in Thind, Multani and Cao (2020) <arXiv:2006.09590> through the help of a main fitting and 
+            prediction function as well as a number of helper functions to assist with 
+            cross-validation, tuning, and the display of estimated functional weights.
 }
 \references{
-Thind B, Multani K, Cao J (2020). “Deep Learning with Functional Inputs.” 2006.09590. https://arxiv.org/abs/2006.09590.
+Thind, B., Multani, K., and Cao J. (2020) “Deep Learning with Functional Inputs”, \url{https://arxiv.org/abs/2006.09590}
 }
 \seealso{
 Useful links:

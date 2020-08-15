@@ -14,6 +14,6 @@ data(daily)
 Classic Canadian weather data set.
 }
 \references{
-Ramsay J, Hooker G, Graves S (2009). \emph{Functional Data Analysis with R and MATLAB}. Springer-Verlag, New York. ISBN 9780387981857.
+Ramsay, J., Hooker, G. and Graves, S. (2009) "Functional Data Analysis with R and MATLAB", Springer-Verlag, New York, \url{ISBN:9780387981857}
 }
 \keyword{datasets}

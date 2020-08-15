@@ -11,9 +11,9 @@ Description: A collection of functions which fit functional neural network model
             other words, this package will allow users to build deep learning models 
             that have either functional or scalar responses paired with functional and 
             scalar covariates. We implement the theoretical discussion found 
-            in (Thind, Multani and Cao, 2020) through the help of a main fitting and 
-            prediction function as well as a number of helper functions to help with 
-            cross-validation, tuning, and displaying estimated functional weights.
+            in Thind, Multani and Cao (2020) <arXiv:2006.09590> through the help of a main fitting and 
+            prediction function as well as a number of helper functions to assist with 
+            cross-validation, tuning, and the display of estimated functional weights.
 Imports: keras,
          tensorflow,
          fda.usc,

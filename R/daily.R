@@ -8,7 +8,7 @@
 #'
 #' @keywords datasets
 #'
-#' @references Ramsay J, Hooker G, Graves S (2009). \emph{Functional Data Analysis with R and MATLAB}. Springer-Verlag, New York. ISBN 9780387981857.
+#' @references Ramsay, J., Hooker, G. and Graves, S. (2009) "Functional Data Analysis with R and MATLAB", Springer-Verlag, New York, <ISBN:9780387981857>
 #'
 #'
 "daily"
