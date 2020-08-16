@@ -166,49 +166,46 @@
 #'
 #' # Looking at predictions
 #' predictions
-#' }
+#' 
 #' 
 #' # Classification Prediction
 #'
 #' # Loading data
-#' tecator = FuncNN::tecator
-#' 
+#' tecator = FNN::tecator
+#'
 #' # Making classification bins
-#' tecator_resp = as.factor(ifelse(tecator$y$Fat[1:20] > 25, 1, 0))
-#' 
+#' tecator_resp = as.factor(ifelse(tecator$y$Fat > 25, 1, 0))
+#'
 #' # Non functional covariate
-#' tecator_scalar = data.frame(water = tecator$y$Water[1:20])
-#' 
-#' # Subsetting full dataset for testing purposes (< 5 second run time)
-#' tecator$absorp.fdata$data = tecator$absorp.fdata$data[1:20,]
-#' 
+#' tecator_scalar = data.frame(water = tecator$y$Water)
+#'
 #' # Splitting data
-#' ind = sample(1:length(tecator_resp), round(0.50*length(tecator_resp)))
+#' ind = sample(1:length(tecator_resp), round(0.75*length(tecator_resp)))
 #' train_y = tecator_resp[ind]
 #' test_y = tecator_resp[-ind]
 #' train_x = tecator$absorp.fdata$data[ind,]
 #' test_x = tecator$absorp.fdata$data[-ind,]
 #' scalar_train = data.frame(tecator_scalar[ind,1])
 #' scalar_test = data.frame(tecator_scalar[-ind,1])
-#' 
+#'
 #' # Making list element to pass in
 #' func_covs_train = list(train_x)
 #' func_covs_test = list(test_x)
-#' 
+#'
 #' # Now running model
 #' fit_class = fnn.fit(resp = train_y,
 #'                     func_cov = func_covs_train,
 #'                     scalar_cov = scalar_train,
-#'                     hidden_layers = 1,
-#'                     neurons_per_layer = c(32),
-#'                     activations_in_layers = c("relu"),
+#'                     hidden_layers = 6,
+#'                     neurons_per_layer = c(24, 24, 24, 24, 24, 58),
+#'                     activations_in_layers = c("relu", "relu", "relu", "relu", "relu", "linear"),
 #'                     domain_range = list(c(850, 1050)),
 #'                     learn_rate = 0.001,
-#'                     epochs = 15,
+#'                     epochs = 100,
 #'                     raw_data = TRUE,
 #'                     early_stopping = TRUE)
-#' 
-#' # Running prediction, gets probabilities
+#'
+#' # Running prediction
 #' predict_class = fnn.predict(fit_class,
 #'                             func_cov = func_covs_test,
 #'                             scalar_cov = scalar_test,
@@ -220,7 +217,7 @@
 #'
 #' # Confusion matrix
 #' # caret::confusionMatrix(as.factor(rounded_preds), as.factor(test_y))
-#'
+#' }
 #'
 #'
 #' @export
