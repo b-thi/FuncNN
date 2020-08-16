@@ -108,7 +108,9 @@
 #'                func_cov = longtidunal_dat,
 #'                scalar_cov = NULL,
 #'                learn_rate = 0.0001,
+#'                epochs = 15,
 #'                raw_data = TRUE)
+#'                
 #' \donttest{
 #' # Classification Example with raw_data = TRUE
 #'
@@ -257,7 +259,7 @@
 #'                             epochs = 300,
 #'                             learn_rate = 0.01,
 #'                             func_resp_method = 1)
-#'}
+#' }
 #'
 #'
 #' @export
