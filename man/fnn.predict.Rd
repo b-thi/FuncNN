@@ -184,6 +184,7 @@ predictions = fnn.predict(weather_func_fnn,
 
 # Looking at predictions
 predictions
+}
 
 # Classification Prediction
 
@@ -191,13 +192,16 @@ predictions
 tecator = FuncNN::tecator
 
 # Making classification bins
-tecator_resp = as.factor(ifelse(tecator$y$Fat > 25, 1, 0))
+tecator_resp = as.factor(ifelse(tecator$y$Fat[1:25] > 25, 1, 0))
 
 # Non functional covariate
-tecator_scalar = data.frame(water = tecator$y$Water)
+tecator_scalar = data.frame(water = tecator$y$Water[1:25])
+
+# Subsetting full dataset for testing purposes (< 5 second run time)
+tecator$absorp.fdata$data = tecator$absorp.fdata$data[1:25,]
 
 # Splitting data
-ind = sample(1:length(tecator_resp), round(0.75*length(tecator_resp)))
+ind = sample(1:length(tecator_resp), round(0.50*length(tecator_resp)))
 train_y = tecator_resp[ind]
 test_y = tecator_resp[-ind]
 train_x = tecator$absorp.fdata$data[ind,]
@@ -213,16 +217,15 @@ func_covs_test = list(test_x)
 fit_class = fnn.fit(resp = train_y,
                     func_cov = func_covs_train,
                     scalar_cov = scalar_train,
-                    hidden_layers = 6,
-                    neurons_per_layer = c(24, 24, 24, 24, 24, 58),
-                    activations_in_layers = c("relu", "relu", "relu", "relu", "relu", "linear"),
+                    hidden_layers = 2,
+                    neurons_per_layer = c(32, 32),
+                    activations_in_layers = c("relu", "relu"),
                     domain_range = list(c(850, 1050)),
-                    learn_rate = 0.001,
-                    epochs = 100,
+                    learn_rate = 0.0001,
                     raw_data = TRUE,
                     early_stopping = TRUE)
 
-# Running prediction
+# Running prediction, gets probabilities
 predict_class = fnn.predict(fit_class,
                             func_cov = func_covs_test,
                             scalar_cov = scalar_test,
@@ -234,7 +237,7 @@ rounded_preds = ifelse(round(predict_class)[,2] == 1, 1, 0)
 
 # Confusion matrix
 # caret::confusionMatrix(as.factor(rounded_preds), as.factor(test_y))
-}
+
 
 
 }
