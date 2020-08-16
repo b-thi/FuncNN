@@ -680,7 +680,7 @@ fnn.fit <- function(resp,
                          metric_choice)
 
     if(print_info ==  TRUE){
-      print(model)
+      message(model)
     }
 
     # We can also display the progress of the network to make it easier to visualize using the following. This is
@@ -800,7 +800,7 @@ fnn.fit <- function(resp,
                          metric_choice)
 
     if(print_info ==  TRUE){
-      print(model)
+      message(model)
     }
 
     # We can also display the progress of the network to make it easier to visualize using the following. This is
@@ -942,7 +942,7 @@ fnn.fit <- function(resp,
                          metric_choice)
 
     if(print_info ==  TRUE){
-      print(model)
+      message(model)
     }
 
     # We can also display the progress of the network to make it easier to visualize using the following. This is
@@ -1073,7 +1073,7 @@ fnn.fit <- function(resp,
                          metric_choice)
 
     if(print_info ==  TRUE){
-      print(model)
+      message(model)
     }
 
     # We can also display the progress of the network to make it easier to visualize using the following. This is
