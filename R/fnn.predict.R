@@ -262,7 +262,7 @@ fnn.predict = function(model,
     domain_range = domain_range_list
 
     # Warning
-    message("Warning: You only specified basis information for one functional covariate -- it will be repeated for all functional covariates")
+    warning("You only specified basis information for one functional covariate -- it will be repeated for all functional covariates")
 
   }
 

@@ -323,9 +323,7 @@ fnn.tune = function(tune_list,
 
   } else {
 
-    message("Tuning isn't available yet for functional responses")
-
-    return()
+    stop("Tuning isn't available yet for functional responses")
 
   }
 
