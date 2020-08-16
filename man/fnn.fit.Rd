@@ -130,18 +130,18 @@ Updates coming soon.
 data("daily")
 
 # Functional covariates
-precip = t(daily$precav)
+precip = t(daily$precav[1:15,])
 longtidunal_dat = list(precip)
 
 # Scalar Response
-total_prec = apply(daily$precav, 2, mean)
+total_prec = apply(daily$precav, 2, mean)[1:15]
 
 # Running model
 fit1 = fnn.fit(resp = total_prec,
                func_cov = longtidunal_dat,
                scalar_cov = NULL,
                learn_rate = 0.0001,
-               epochs = 15,
+               epochs = 10,
                raw_data = TRUE)
                
 \donttest{
