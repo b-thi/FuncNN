@@ -218,10 +218,11 @@ fit_class = fnn.fit(resp = train_y,
                     func_cov = func_covs_train,
                     scalar_cov = scalar_train,
                     hidden_layers = 2,
-                    neurons_per_layer = c(32, 32),
-                    activations_in_layers = c("relu", "relu"),
+                    neurons_per_layer = c(32),
+                    activations_in_layers = c("relu"),
                     domain_range = list(c(850, 1050)),
                     learn_rate = 0.0001,
+                    epochs = 15,
                     raw_data = TRUE,
                     early_stopping = TRUE)
 
