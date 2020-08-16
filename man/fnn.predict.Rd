@@ -189,7 +189,7 @@ predictions
 # Classification Prediction
 
 # Loading data
-tecator = FNN::tecator
+tecator = FuncNN::tecator
 
 # Making classification bins
 tecator_resp = as.factor(ifelse(tecator$y$Fat > 25, 1, 0))
