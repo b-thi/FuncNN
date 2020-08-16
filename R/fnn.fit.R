@@ -97,11 +97,11 @@
 #' data("daily")
 #'
 #' # Functional covariates (subsetting for time sake)
-#' precip = t(daily$precav)
+#' precip = t(daily$precav[,1:5])
 #' longtidunal_dat = list(precip)
 #'
 #' # Scalar Response
-#' total_prec = apply(daily$precav, 2, mean)
+#' total_prec = apply(daily$precav, 2, mean)[1:5]
 #'
 #' # Running model
 #' fit1 = fnn.fit(resp = total_prec,
