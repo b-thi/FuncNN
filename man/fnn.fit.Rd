@@ -141,7 +141,9 @@ fit1 = fnn.fit(resp = total_prec,
                func_cov = longtidunal_dat,
                scalar_cov = NULL,
                learn_rate = 0.0001,
+               epochs = 15,
                raw_data = TRUE)
+               
 \donttest{
 # Classification Example with raw_data = TRUE
 
