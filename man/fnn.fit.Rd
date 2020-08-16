@@ -129,8 +129,8 @@ Updates coming soon.
 # Loading in data
 data("daily")
 
-# Functional covariates
-precip = t(daily$precav[1:15,])
+# Functional covariates (subsetting for time sake)
+precip = t(daily$precav[,1:15])
 longtidunal_dat = list(precip)
 
 # Scalar Response
