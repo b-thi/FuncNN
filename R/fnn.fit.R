@@ -90,16 +90,15 @@
 #' of layers specifying what percentage to drop in each layer.
 #'
 #' @examples
-#' \donttest{
+#' 
 #' # First, an easy example with raw_data = T
 #'
 #' # Loading in data
 #' data("daily")
 #'
 #' # Functional covariates
-#' temp = t(daily$tempav)
 #' precip = t(daily$precav)
-#' longtidunal_dat = list(temp, precip)
+#' longtidunal_dat = list(precip)
 #'
 #' # Scalar Response
 #' total_prec = apply(daily$precav, 2, mean)
@@ -110,7 +109,7 @@
 #'                scalar_cov = NULL,
 #'                learn_rate = 0.0001,
 #'                raw_data = TRUE)
-#'
+#' \donttest{
 #' # Classification Example with raw_data = TRUE
 #'
 #' # Loading data
