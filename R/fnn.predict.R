@@ -174,13 +174,13 @@
 #' tecator = FuncNN::tecator
 #' 
 #' # Making classification bins
-#' tecator_resp = as.factor(ifelse(tecator$y$Fat[1:25] > 25, 1, 0))
+#' tecator_resp = as.factor(ifelse(tecator$y$Fat[1:20] > 25, 1, 0))
 #' 
 #' # Non functional covariate
-#' tecator_scalar = data.frame(water = tecator$y$Water[1:25])
+#' tecator_scalar = data.frame(water = tecator$y$Water[1:20])
 #' 
 #' # Subsetting full dataset for testing purposes (< 5 second run time)
-#' tecator$absorp.fdata$data = tecator$absorp.fdata$data[1:25,]
+#' tecator$absorp.fdata$data = tecator$absorp.fdata$data[1:20,]
 #' 
 #' # Splitting data
 #' ind = sample(1:length(tecator_resp), round(0.50*length(tecator_resp)))
@@ -199,11 +199,11 @@
 #' fit_class = fnn.fit(resp = train_y,
 #'                     func_cov = func_covs_train,
 #'                     scalar_cov = scalar_train,
-#'                     hidden_layers = 2,
+#'                     hidden_layers = 1,
 #'                     neurons_per_layer = c(32),
 #'                     activations_in_layers = c("relu"),
 #'                     domain_range = list(c(850, 1050)),
-#'                     learn_rate = 0.0001,
+#'                     learn_rate = 0.001,
 #'                     epochs = 15,
 #'                     raw_data = TRUE,
 #'                     early_stopping = TRUE)
