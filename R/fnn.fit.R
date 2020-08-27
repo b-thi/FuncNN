@@ -90,9 +90,10 @@
 #' of layers specifying what percentage to drop in each layer.
 #'
 #' @examples
-#' 
+#' \donttest{ 
 #' # First, an easy example with raw_data = T
 #'
+#' 
 #' # Loading in data
 #' data("daily")
 #'
@@ -111,7 +112,6 @@
 #'                epochs = 10,
 #'                raw_data = TRUE)
 #'                
-#' \donttest{
 #' # Classification Example with raw_data = TRUE
 #'
 #' # Loading data

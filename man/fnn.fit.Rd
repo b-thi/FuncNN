@@ -123,8 +123,9 @@ with a generalized input space.
 Updates coming soon.
 }
 \examples{
-
+\donttest{ 
 # First, an easy example with raw_data = T
+
 
 # Loading in data
 data("daily")
@@ -144,7 +145,6 @@ fit1 = fnn.fit(resp = total_prec,
                epochs = 10,
                raw_data = TRUE)
                
-\donttest{
 # Classification Example with raw_data = TRUE
 
 # Loading data

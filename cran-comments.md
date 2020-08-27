@@ -14,4 +14,4 @@ There were no ERRORs, WARNINGs or NOTEs.
 ### - All T and F have been changed to TRUE and FALSE
 ### - We have rewritten our citation to deal with formatting
 ### - While we have rewritten some print statements as messages, we could not rewrite all of them in this was as some are based on dependencies. As a workaround to easily silence a function, we provide an option for the functions in the form of "print_info". Setting this to FALSE will silence the functions.
-### - We have included an example that should run in less than 5 seconds for our main fnn.fit() function.
+### - Our examples don't run in under 5 seconds (the slowest one being about 6 seconds) due to some of the pre-processing required. Also, our package requires TensorFlow to be installed on the machine.
