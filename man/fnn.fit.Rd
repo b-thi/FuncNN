@@ -111,7 +111,7 @@ The following are returned:
 
 \code{per_iter_info} -- Change in error over training iterations
 
-\code{func_obs} -- In the case when \code{raw_data} is True, the user may want to see the internally developed functional observations.
+\code{func_obs} -- In the case when \code{raw_data} is \code{TRUE}, the user may want to see the internally developed functional observations.
 This returns those functions.
 }
 \description{
@@ -124,7 +124,7 @@ Updates coming soon.
 }
 \examples{
 \donttest{ 
-# First, an easy example with raw_data = T
+# First, an easy example with raw_data = TRUE
 
 
 # Loading in data
