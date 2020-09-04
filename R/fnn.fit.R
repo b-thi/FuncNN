@@ -19,7 +19,7 @@
 #'
 #' `per_iter_info` -- Change in error over training iterations
 #'
-#' `func_obs` -- In the case when `raw_data` is True, the user may want to see the internally developed functional observations.
+#' `func_obs` -- In the case when `raw_data` is `TRUE`, the user may want to see the internally developed functional observations.
 #' This returns those functions.
 #'
 #' @details Updates coming soon.
@@ -91,7 +91,7 @@
 #'
 #' @examples
 #' \donttest{ 
-#' # First, an easy example with raw_data = T
+#' # First, an easy example with raw_data = TRUE
 #'
 #' 
 #' # Loading in data
@@ -516,7 +516,7 @@ fnn.fit <- function(resp,
   #   df <- func_cov[,,i]
   #
   #   # Turning into matrix
-  #   if(is.vector(df) == T){
+  #   if(is.vector(df) == TRUE){
   #     print('yes')
   #     test_mat = matrix(nrow = length(df), ncol = 1)
   #     test_mat[,1] = df
