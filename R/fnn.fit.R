@@ -68,9 +68,9 @@
 #' @param patience_param A keras parameter that decides how many additional `epochs` are eclipsed with minimal change in
 #' error before the learning process is stopped. This is only active if `early_stopping = TRUE`
 #'
-#' @param early_stopping If True, then learning process will be halted early if error improvement isn't seen.
+#' @param early_stopping If TRUE, then learning process will be halted early if error improvement isn't seen.
 #'
-#' @param print_info If True, function will output information about the model as it is trained.
+#' @param print_info If TRUE, function will output information about the model as it is trained.
 #'
 #' @param batch_size Size of the batch for stochastic gradient descent.
 #'
@@ -80,9 +80,9 @@
 #' @param func_resp_method Set to 1 by default. In the future, this will be set to 2 for an alternative functional response
 #' approach.
 #'
-#' @param covariate_scaling If True, then data will be internally scaled before model development.
+#' @param covariate_scaling If TRUE, then data will be internally scaled before model development.
 #'
-#' @param raw_data If True, then user does not need to create functional observations beforehand. The function will
+#' @param raw_data If TRUE, then user does not need to create functional observations beforehand. The function will
 #' internally take care of that pre-processing.
 #'
 #' @param dropout Keras parameter that randomly drops some percentage of the neurons in a given layer.
@@ -286,7 +286,7 @@ fnn.fit <- function(resp,
                     learn_rate = 0.001,
                     patience_param = 15,
                     early_stopping = TRUE,
-                    print_info = T,
+                    print_info = TRUE,
                     batch_size = 32,
                     decay_rate = 0,
                     func_resp_method = 1,

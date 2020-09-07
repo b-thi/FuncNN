@@ -53,7 +53,7 @@ iterations are completed.}
 
 \item{cores}{For the purpose of parallelization.}
 
-\item{raw_data}{If True, then user does not need to create functional observations beforehand. The function will
+\item{raw_data}{If TRUE, then user does not need to create functional observations beforehand. The function will
 internally take care of that pre-processing.}
 }
 \value{
